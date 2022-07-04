@@ -15,6 +15,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
+  void answerChose() {
+    setState(() {
+      _questionIndex++;
+    });
+    print("Answer Chosen");
+  }
+
   @override
   Widget build(BuildContext context) {
     var _questions = [
@@ -33,28 +40,19 @@ class _MyAppState extends State<MyApp> {
             RaisedButton(
               child: Text("Answer 1"),
               onPressed: () {
-                setState(() {
-                  _questionIndex++;
-                });
-                print("Answer Chosen");
+                answerChose();
               },
             ),
             RaisedButton(
               child: Text("Answer 2"),
               onPressed: () {
-                setState(() {
-                  _questionIndex++;
-                });
-                print("Answer Chosen");
+                answerChose();
               },
             ),
             RaisedButton(
               child: Text("Answer 3"),
               onPressed: () {
-                setState(() {
-                  _questionIndex++;
-                });
-                print("Answer Chosen");
+                answerChose();
               },
             ),
           ],
