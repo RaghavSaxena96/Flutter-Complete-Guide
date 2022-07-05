@@ -16,28 +16,52 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _questions = const [
     {
-      'questionText': "What's your favorite Color?",
-      'answers': ["Red", "Blue", "Green", "Black", "Yellow"]
+      'questionText': 'What\'s your favorite color?',
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 5},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 1},
+      ],
     },
     {
-      'questionText': "What's your favorite Dish?",
-      'answers': ["Puri", "Chicken", "Wraps", "Rice Bowl", "Noodles"]
+      'questionText': 'What\'s your favorite animal?',
+      'answers': [
+        {'text': 'Rabbit', 'score': 3},
+        {'text': 'Snake', 'score': 11},
+        {'text': 'Elephant', 'score': 5},
+        {'text': 'Lion', 'score': 9},
+      ],
     },
     {
-      'questionText': "What's your favorite Animal?",
-      'answers': ["Dog", "Cat", "Elephant", "Tiger", "Lion"]
-    }
+      'questionText': 'Who\'s your favorite instructor?',
+      'answers': [
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+      ],
+    },
   ];
 
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerChose() {
+  void _answerChose(int score) {
+    _totalScore = _totalScore + score;
     if (_questionIndex < _questions.length) {
       setState(() {
         _questionIndex++;
       });
       print("Answer Chosen");
     }
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
   }
 
   @override
@@ -52,7 +76,7 @@ class _MyAppState extends State<MyApp> {
                 selectHandler: _answerChose,
                 questions: _questions,
                 questionIndex: _questionIndex)
-            : Result(),
+            : Result(_totalScore, _resetQuiz),
       ),
     );
   }
